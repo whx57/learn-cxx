@@ -42,6 +42,7 @@ private:
             index += indices[i] * stride;
             stride *= shape[i];
         }
+        return index;
     }
 };
 
