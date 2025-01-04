@@ -57,12 +57,12 @@ int main(int argc, char **argv) {
         {"r", "d", "d"},
     };
     //打印problems
-    // for (auto i = 0; i < 3; ++i) {
-    //     for (auto j = 0; j < problems[i].size(); ++j) {
-    //         std::cout << problems[i][j] << std::endl;
-    //     }
-    //     std::cout << "----" << std::endl;
-    // }
+    for (auto i = 0; i < 3; ++i) {
+        for (auto j = 0; j < problems[i].size(); ++j) {
+            std::cout << problems[i][j] << std::endl;
+        }
+        std::cout << "----" << std::endl;
+    }
     // ---- 不要修改以下代码 ----
 
     for (auto i = 0; i < 3; ++i) {
