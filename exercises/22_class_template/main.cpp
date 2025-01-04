@@ -1,7 +1,7 @@
 ﻿#include "../exercise.h"
 
 // READ: 类模板 <https://zh.cppreference.com/w/cpp/language/class_template>
-
+#include <cstring> 
 template<class T>
 struct Tensor4D {
     unsigned int shape[4];
