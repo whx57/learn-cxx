@@ -1,13 +1,24 @@
 #include "../exercise.h"
 
-// TODO: 改正函数实现，实现正确的缓存优化斐波那契计算
+// TODO: 改正函数实现，实现正确的缓存优化斯波那契计算
 // THINk: 这个函数是一个纯函数（pure function）吗？
+// 答：不是纯函数，因为它使用了 static 变量来存储状态，有副作用
 // READ: 纯函数 <https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0>
+
+// 知识点总结：
+// 1. static 局部变量：只在第一次调用时初始化，生命周期为整个程序运行期间
+// 2. 数组初始化：省略初始化列表的数组元素会被零初始化
+// 3. 缓存逻辑：从 cached 到 i 的值需要计算
 static unsigned long long fibonacci(int i) {
     // TODO: 为缓存设置正确的初始值
-    static unsigned long long cache[96], cached;
+    // 修改思路：需要初始化 cache[0]=0, cache[1]=1，并记录已缓存的位置
+    // static unsigned long long cache[96], cached;  // 原始代码
+    static unsigned long long cache[96] = {0, 1};
+    static int cached = 2;
     // TODO: 设置正确的循环条件
-    for (; false; ++cached) {
+    // 修改思路：当 cached <= i 时继续计算，直到缓存包含 i
+    // for (; false; ++cached) {  // 原始代码
+    for (; cached <= i; ++cached) {
         cache[cached] = cache[cached - 1] + cache[cached - 2];
     }
     return cache[i];

@@ -2,6 +2,11 @@
 
 // READ: 枚举类型 <https://zh.cppreference.com/w/cpp/language/enum>
 
+// 知识点总结：
+// 1. enum vs enum class：enum 会污染命名空间，enum class 提供类型安全
+// 2. union 类型双关：在同一内存位置存储不同类型的值
+// 3. C++ 中 union 类型双关是未定义行为，仅 C 语言良定义
+
 // `enum` 是 C 的兼容类型，本质上其对应类型的常量。
 // 在 `enum` 中定义标识符等价于定义 constexpr 常量，
 // 这些标识符不需要前缀，可以直接引用。
@@ -37,6 +42,8 @@ ColorEnum convert_by_pun(Color c) {
 
     TypePun pun;
     // TODO: 补全类型双关转换
+    // 修改思路：将 Color 类型的 c 赋值给 union 的 c 成员，然后读取 e 成员实现类型转换
+    pun.c = c;
 
     return pun.e;
 }
