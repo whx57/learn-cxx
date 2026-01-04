@@ -42,7 +42,6 @@ ColorEnum convert_by_pun(Color c) {
 
     TypePun pun;
     // TODO: 补全类型双关转换
-    // 修改思路：将 Color 类型的 c 赋值给 union 的 c 成员，然后读取 e 成员实现类型转换
     pun.c = c;
 
     return pun.e;

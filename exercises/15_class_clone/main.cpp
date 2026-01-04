@@ -12,34 +12,28 @@
 class DynFibonacci {
     size_t *cache;
     int cached;
+    int capacity;
 
 public:
     // TODO: 实现动态设置容量的构造器
-    // 修改思路：分配 capacity 个 size_t，初始化 cached=2
-    // DynFibonacci(int capacity): cache(new ?), cached(?) {}  // 原始代码
-    DynFibonacci(int capacity): cache(new size_t[capacity]{0, 1}), cached(2) {}
+    DynFibonacci(int capacity): cache(new size_t[capacity]), cached(2),capacity(capacity) {
+        cache[0] = 0;
+        cache[1] = 1;
+    }
 
     // TODO: 实现复制构造器
-    // 修改思路：实现深拷贝，复制缓存数组中的数据
-    // DynFibonacci(DynFibonacci const &) = delete;  // 原始代码
-    DynFibonacci(DynFibonacci const &other) : cache(new size_t[other.cached]), cached(other.cached) {
-        for (int i = 0; i < cached; ++i) {
-            cache[i] = other.cache[i];
-        }
+    DynFibonacci(DynFibonacci const &other) : cache(new size_t[other.capacity]), cached(other.cached), capacity(other.capacity) {
+        std::copy(other.cache, other.cache + other.cached, cache);
     }
 
     // TODO: 实现析构器，释放缓存空间
-    // 修改思路：使用 delete[] 释放动态数组
-    // ~DynFibonacci();  // 原始代码
-    ~DynFibonacci() {
+    ~DynFibonacci(){
         delete[] cache;
     }
 
     // TODO: 实现正确的缓存优化斯波那契计算
     size_t get(int i) {
-        // 修改思路：修复循环条件，从 cached 计算到 i
-        // for (; false; ++cached) {  // 原始代码
-        for (; cached <= i; ++cached) {
+        for (;cached<=i; ++cached) {
             cache[cached] = cache[cached - 1] + cache[cached - 2];
         }
         return cache[i];

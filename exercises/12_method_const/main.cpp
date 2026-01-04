@@ -10,10 +10,7 @@
 struct Fibonacci {
     int numbers[11];
     // TODO: 修改方法签名和实现，使测试通过
-    // 修改思路：添加 const 修饰符使其成为 const 成员函数，并返回 numbers[i]
-    // int get(int i) {  // 原始代码
-    // }  // 原始代码
-    int get(int i) const {
+    int get(int i) const{
         return numbers[i];
     }
 };

@@ -11,14 +11,9 @@
 // 3. 缓存逻辑：从 cached 到 i 的值需要计算
 static unsigned long long fibonacci(int i) {
     // TODO: 为缓存设置正确的初始值
-    // 修改思路：需要初始化 cache[0]=0, cache[1]=1，并记录已缓存的位置
-    // static unsigned long long cache[96], cached;  // 原始代码
-    static unsigned long long cache[96] = {0, 1};
-    static int cached = 2;
+    static unsigned long long cache[96]={0,1}, cached=2;
     // TODO: 设置正确的循环条件
-    // 修改思路：当 cached <= i 时继续计算，直到缓存包含 i
-    // for (; false; ++cached) {  // 原始代码
-    for (; cached <= i; ++cached) {
+    for (; cached<=i; ++cached) {
         cache[cached] = cache[cached - 1] + cache[cached - 2];
     }
     return cache[i];

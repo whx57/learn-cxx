@@ -19,15 +19,12 @@ class Fibonacci {
 
 public:
     // TODO: 实现构造器
-    // 修改思路：使用成员初始化列表初始化 cache 和 cached
-    // Fibonacci()  // 原始代码
-    Fibonacci() : cache{0, 1}, cached(2) {}
+    // Fibonacci()
+    Fibonacci():cache{0,1},cached(2){}
 
     // TODO: 实现正确的缓存优化斯波那契计算
     size_t get(int i) {
-        // 修改思路：修复循环条件，从 cached 计算到 i
-        // for (; false; ++cached) {  // 原始代码
-        for (; cached <= i; ++cached) {
+        for (;cached<=i ; ++cached) {
             cache[cached] = cache[cached - 1] + cache[cached - 2];
         }
         return cache[i];

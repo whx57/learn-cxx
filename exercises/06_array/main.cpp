@@ -16,16 +16,13 @@ unsigned long long fibonacci(int i) {
             return 1;
         default:
             // TODO: 补全三目表达式缺失的部分
-            // 修改思路：检查缓存中是否已计算过该值，若已缓存则直接返回，否则计算并缓存
-            // return <condition> ? <cache> : (arr[i] = fibonacci(i - 1) + fibonacci(i - 2));  // 原始代码
-            return arr[i] != 0 ? arr[i] : (arr[i] = fibonacci(i - 1) + fibonacci(i - 2));
+            return arr[i]? arr[i] : (arr[i] = fibonacci(i - 1) + fibonacci(i - 2));
     }
 }
 
 int main(int argc, char **argv) {
     // TODO: 为此 ASSERT 填写正确的值
-    // 修改思路：arr 是 unsigned long long[90]，每个元素 8 字节，共 90*8=720 字节
-    // ASSERT(sizeof(arr) == ?, "sizeof array is size of all its elements");  // 原始代码
+    printf("%d\n", sizeof(arr));
     ASSERT(sizeof(arr) == 720, "sizeof array is size of all its elements");
     // ---- 不要修改以下代码 ----
     ASSERT(fibonacci(2) == 1, "fibonacci(2) should be 1");
